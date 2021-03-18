@@ -10,16 +10,10 @@ class ProsesAprioriController extends Controller
 {
     public function proses(){
 
-        $data_transaksi = DB::select('select distinct id_transaksi from transaksi');
+        $min = 30;
 
-        $data = array();
-        // $data_transaksi = json_decode($data_transaksi,false);
-
-        foreach ($data_transaksi as $value) {
-            
-            $data_produk = DB::select('select kode_produk from transaksi where id_transaksi = '. $value )git
-
-        }
+        $item_set1 = DB::select('INSERT INTO `itemset1`(`atribut`, `jumlah`) SELECT kode_produk,count(DISTINCT id_penjualan) FROM `penjualan_detail` GROUP BY kode_produk');
+      
 
     }
 }
