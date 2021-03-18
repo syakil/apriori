@@ -13,6 +13,7 @@ class ProsesAprioriController extends Controller
         $min = 30;
         $transaksi = DB::select('SELECT count(DISTINCT id_penjualan) FROM `penjualan_detail`');
         $jumlah_transaksi =  $transaksi[0];
+        dd($jumlah_transaksi);
 
         $clearitemset1= DB::select('TRUNCATE `itemset1`');
         $item_set1 = DB::select('INSERT INTO `itemset1`(`atribut`, `jumlah`) SELECT kode_produk,count(DISTINCT id_penjualan) FROM `penjualan_detail` GROUP BY kode_produk');
