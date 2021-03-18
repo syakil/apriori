@@ -17,9 +17,7 @@ class ProsesAprioriController extends Controller
 
         foreach ($data_transaksi as $value) {
             
-            $data_produk = DB::select('select kode_produk from transaksi where id_transaksi = '. $value );
-
-            dd($data_produk);
+            $data_produk = DB::select('select kode_produk from transaksi where id_transaksi = '. $value )git
 
         }
 
