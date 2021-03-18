@@ -11,8 +11,8 @@ class ProsesAprioriController extends Controller
     public function proses(){
 
         $min = 30;
-        $transaksi = DB::select('SELECT count(DISTINCT id_penjualan) FROM `penjualan_detail`');
-        $jumlah_transaksi =  $transaksi[0];
+        $transaksi = DB::select('SELECT count(DISTINCT id_penjualan) as jumlah FROM `penjualan_detail`');
+        $jumlah_transaksi =  $transaksi[0]['jumlah'];
         dd($jumlah_transaksi);
 
         $clearitemset1= DB::select('TRUNCATE `itemset1`');
