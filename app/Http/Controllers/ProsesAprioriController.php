@@ -18,5 +18,11 @@ class ProsesAprioriController extends Controller
         $item_set1 = DB::select('INSERT INTO `itemset1`(`atribut`, `jumlah`) SELECT kode_produk,count(DISTINCT id_penjualan) FROM `penjualan_detail` GROUP BY kode_produk');
         $support_item1 = DB::select('UPDATE `itemset1` SET support =round( jumlah/'.$jumlah_transaksi .'*100),lolos = if(support > jumlah,1,0) ');
         $lolos_item1 = DB::select('UPDATE `itemset1` SET lolos = if(support >= '.$min.',1,0) ');
+
+        $item_set2 = DB::select('SELECT * FROM `itemset1` WHERE lolos = 1');
+        dd($item_set2);
+
+
+
     }
 }
