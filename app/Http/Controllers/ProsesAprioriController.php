@@ -23,17 +23,18 @@ class ProsesAprioriController extends Controller
 
         $item_set1 = DB::select('SELECT atribut FROM `itemset1` WHERE lolos = 1');
         $jumlah_lolos_itemset1 = DB::select('SELECT count(atribut) as jumlah FROM `itemset1` WHERE lolos = 1');
-        
-        for ($i=0; $i >= $jumlah_lolos_itemset1[0]->jumlah ; $i++) { 
+
+        for ($i=0; $i < $jumlah_lolos_itemset1[0]->jumlah ; $i++) { 
             
-            for ($h=1; $h >= $jumlah_lolos_itemset1[0]->jumlah ; $h++) { 
+            for ($h=0; $h < $jumlah_lolos_itemset1[0]->jumlah ; $h++) { 
                 
-                $insert_item_set2 = DB::select('INSERT INTO itemset1 (attribut1,attribut2) VALUES ('. $item_set1[$i] . ' , '. $item_set1[$h]. ')');
+                if ($item_set1[$i]->atribut !=  $item_set1[$h]->atribut) {
+                    $insert_item_set2 = DB::select('INSERT INTO itemset2 (atribut1,atribut2) VALUES ('. $item_set1[$i]->atribut . ' , '. $item_set1[$h]->atribut. ')');
+                }
         
             }
-        
         }
-
+        
     }
 
 
