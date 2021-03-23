@@ -171,7 +171,7 @@ class ProsesAprioriController extends Controller{
 
     public function proses(){
 
-        $min = 10;
+        $min = 25;
 
         $data_mentah = DB::select('SELECT id_penjualan,GROUP_CONCAT(DISTINCT CONCAT(kode_produk)) AS produk FROM penjualan_detail GROUP BY id_penjualan ASC');
 
