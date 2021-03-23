@@ -299,7 +299,7 @@ class ProsesAprioriController extends Controller{
                     $varianset3b = $varianset3[$j]['atribut2'];
                     $varianset3c = $varianset3[$j]['atribut3'];
 
-                    $jumlahtransaksi3 = $this->hitung_set3($data_penjualan,$varianset3a,$varianset3b,$varianset3c);
+                    $jumlahtransaksi3 = $this->hitung_set3($data_mentah,$varianset3a,$varianset3b,$varianset3c);
                     
                     $itemsetjumlah3[] = ['atribut1' => $varianset3[$j]['atribut1'],'atribut2' => $varianset3[$j]['atribut2'],'atribut3'=>$varianset3[$j]['atribut3'],'jumlah' =>$jumlahtransaksi3,'support'=>$jumlahtransaksi3/$jumlah_penjualan*100,'lolos' => ($jumlahtransaksi3/$jumlah_penjualan*100 >= $min) ? 1:0
                     ];
@@ -348,11 +348,11 @@ class ProsesAprioriController extends Controller{
     }
 
 
-    public function hitung_set3($data_penjualan,$varianset3a,$varianset3b,$varianset3c){
+    public function hitung_set3($data_mentah,$varianset3a,$varianset3b,$varianset3c){
 
         $jumlahset3 =0;
 
-        foreach ($data_penjualan as $key => $value) {
+        foreach ($data_mentah as $key => $value) {
             
             $items = ",".strtoupper($value->produk).",";
             $item_variasi1 = ",".strtoupper($varianset3a).",";
