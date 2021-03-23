@@ -235,7 +235,7 @@ class ProsesAprioriController extends Controller{
                 $jumlahtransaksi2 = $this->hitung_set2($data_mentah,$varianset2a,$varianset2b);
                 
                 
-                $itemsetjumlah[] = ['atribut1' => $varian[$j]['atribut1'],'atribut2' => $varian[$j]['atribut2'],'jumlah'=>$jumlahtransaksi2,'support'=>$jumlahtransaksi2/$jumlah_penjualan * 100, 'lolos' => ($jumlahtransaksi2/$jumlah_penjualan * 100 >= $min)?1:0];
+                $itemsetjumlah[] = ['atribut1' => $varian[$j]['atribut1'],'atribut2' => $varian[$j]['atribut2'],'jumlah'=>$jumlahtransaksi2,'support'=>round($jumlahtransaksi2/$jumlah_penjualan * 100), 'lolos' => (round($jumlahtransaksi2/$jumlah_penjualan * 100) >= $min)?1:0];
                         
             }
 
@@ -301,7 +301,7 @@ class ProsesAprioriController extends Controller{
 
                     $jumlahtransaksi3 = $this->hitung_set3($data_mentah,$varianset3a,$varianset3b,$varianset3c);
                     
-                    $itemsetjumlah3[] = ['atribut1' => $varianset3[$j]['atribut1'],'atribut2' => $varianset3[$j]['atribut2'],'atribut3'=>$varianset3[$j]['atribut3'],'jumlah' =>$jumlahtransaksi3,'support'=>$jumlahtransaksi3/$jumlah_penjualan*100,'lolos' => ($jumlahtransaksi3/$jumlah_penjualan*100 >= $min) ? 1:0
+                    $itemsetjumlah3[] = ['atribut1' => $varianset3[$j]['atribut1'],'atribut2' => $varianset3[$j]['atribut2'],'atribut3'=>$varianset3[$j]['atribut3'],'jumlah' =>$jumlahtransaksi3,'support'=>round($jumlahtransaksi3/$jumlah_penjualan*100),'lolos' => (round($jumlahtransaksi3/$jumlah_penjualan*100) >= $min) ? 1:0
                     ];
                             
                 }
