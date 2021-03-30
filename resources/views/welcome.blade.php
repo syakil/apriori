@@ -9,8 +9,9 @@
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
-
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
         <!-- Styles -->
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
         <style>
             html, body {
                 background-color: #fff;
@@ -66,24 +67,35 @@
     </head>
     <body>
         <div class="flex-center position-ref full-height">
-            @if (Route::has('login'))
-                <div class="top-right links">
-                    @auth
-                        <a href="{{ url('/home') }}">Home</a>
-                    @else
-                        <a href="{{ route('login') }}">Login</a>
-                        <a href="{{ route('register') }}">Register</a>
-                    @endauth
-                </div>
-            @endif
-
+        @if ($message = Session::get('error'))
+            <script>
+                var pesan = "{{$message}}"
+                swal("Maaf !", pesan, "error"); 
+            </script>
+        @elseif ($message = Session::get('success'))
+            <script>
+                var pesan = "{{$message}}"
+                swal("Selamat !", pesan, "success"); 
+            </script>
+        @endif
             <div class="content">
                 <div class="title m-b-md">
                     Algoritma Apriori
                 </div>
 
                 <div class="links">
-                    <a href="{{route('apriori.proses')}}" >Proses</a>
+                <form action="{{route('apriori.proses')}}" method="post">
+                {{ csrf_field() }}
+                    <div class="form-group">
+                        <label for="min_confidence">Minimal Confidence</label>
+                        <input required type="number" name="min_confidence" class="form-control" id="min_confidence" placeholder="Minimal Nilai Confidence">
+                    </div>
+                    <div class="form-group">
+                        <label for="min_support">Minimal Support</label>
+                        <input required type="number" name="min_support" class="form-control" id="min_support" placeholder="Minimal Support">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
                 </div>
             </div>
         </div>

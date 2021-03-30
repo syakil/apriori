@@ -16,4 +16,5 @@ Route::get('/', function () {
 });
 
 
-Route::get('proses', 'ProsesAprioriController@proses')->name('apriori.proses');
+Route::post('proses', 'ProsesAprioriController@proses')->name('apriori.proses');
+Route::get('hasil', 'ProsesAprioriController@hasil')->name('apriori.hasil');

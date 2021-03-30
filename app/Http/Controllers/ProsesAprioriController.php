@@ -8,10 +8,10 @@ use DB;
 
 class ProsesAprioriController extends Controller{
 
-    public function proses(){
+    public function proses(Request $request){
 
-        $min = 7;
-        $min_conf = 7;
+        $min = $request->min_support;
+        $min_conf = $request->min_confidence;
 
         $data_mentah = DB::select('SELECT id_penjualan,GROUP_CONCAT(DISTINCT CONCAT(kode_produk)) AS produk FROM penjualan_detail GROUP BY id_penjualan ASC');
 
@@ -209,6 +209,15 @@ class ProsesAprioriController extends Controller{
             }
 
         }
+
+        return redirect()->route('apriori.hasil', ['success'=>'Proses Berhasil !']);;
+
+    }
+
+
+    public function hasil(){
+
+        return view('apriori.hasil');
 
     }
 
