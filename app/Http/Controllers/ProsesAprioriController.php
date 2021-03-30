@@ -10,6 +10,8 @@ class ProsesAprioriController extends Controller{
 
     public function proses(Request $request){
 
+        $time_start = microtime(true); 
+
         $min = $request->min_support;
         $min_conf = $request->min_confidence;
 
@@ -210,7 +212,11 @@ class ProsesAprioriController extends Controller{
 
         }
 
-        return redirect()->route('apriori.hasil', ['success'=>'Proses Berhasil !']);;
+        
+        $time_end = microtime(true);
+        $execution_time = ($time_end - $time_start);
+
+        return json_decode($execution_time,true);
 
     }
 
